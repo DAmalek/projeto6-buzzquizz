@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./style.css" />
     <title>BuzzQuizz</title>
   </head>
+
   <body>
     <header>
       <div class="topo">
@@ -15,152 +16,156 @@
       </div>
     </header>
     <main>
-       <div class="conteudo">
-            <div class="criacao-quizz">
-                
-            </div>
-       </div>
-       
-       
-       
-       
-       dnadadnanda
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-        <!-------------EXIBIR UM QUIZZ------------>
-        <div class="banner">
-            <img src="./img/wallpaper1.jpg" alt="">
-            <div class="opacity-escura"></div>
-            <h2>curte topgun?</h2>
+      <div class="conteudo">
+        <div class="criacao-quizz">
+          <p>Você não criou nenhum quizz ainda :(</p>
+          <button>Criar Quizz</button>
         </div>
-
-        <div class="conteudo">
-            <div class="container">
-                <div class="pergunta">perguntaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?</div>
-                <div class="box">
-                    <img src="./img/wallpaper1.jpg" alt="">
-                    <p>topgun</p>
-                </div>
-                <div class="box">
-                    <img src="./img/wallpaper1.jpg" alt="">
-                    <p>topgun</p>
-                </div>
-                <div class="box">
-                    <img src="./img/wallpaper1.jpg" alt="">
-                    <p>topgun</p>
-                </div>
-                <div class="box">
-                    <img src="./img/wallpaper1.jpg" alt="">
-                    <p>topgun</p>
-                </div>
-            </div>
-            
+        <p>Todas as Quizzes</p>
+        <div class="quizz-container">
+          
+          <div class="quizz-box">
+            <img src="./img/wallpaper1.jpg" alt="" />
+            <p>TITULO DO QUIZZ</p>
+          </div>
+          <div class="quizz-box">
+            <img src="./img/wallpaper1.jpg" alt="" />
+            <p>TITULO DO QUIZZ</p>
+          </div>
+          <div class="quizz-box">
+            <img src="./img/wallpaper1.jpg" alt="" />
+            <p>TITULO DO QUIZZ</p>
+          </div>
+          <div class="quizz-box">
+            <img src="./img/wallpaper1.jpg" alt="" />
+            <p>TITULO DO QUIZZ</p>
+          </div>
+          <div class="quizz-box">
+            <img src="./img/wallpaper1.jpg" alt="" />
+            <p>TITULO DO QUIZZ</p>
+          </div>
+          <div class="quizz-box">
+            <img src="./img/wallpaper1.jpg" alt="" />
+            <p>TITULO DO QUIZZ</p>
+          </div>
+          <div class="quizz-box">
+            <img src="./img/wallpaper1.jpg" alt="" />
+            <p>TITULO DO QUIZZ</p>
+          </div>
+          <div class="quizz-box">
+            <img src="./img/wallpaper1.jpg" alt="" />
+            <p>TITULO DO QUIZZ</p>
+          </div>
         </div>
-        
-        <!-------------------->
-
-    </main>
-  <!-- MENU DE CRIAÇÂO DO QUIZ -->
-    <div class="corpoquiz none">
-      <h1>Comece pelo começo</h1>
-      <div class="cquiz">
-        <input class="boxinput" type="text" placeholder="Título do seu quizz" />
-        <input
-          class="boxinput"
-          type="text"
-          placeholder="URL da imagem do seu quizz"
-        />
-        <input
-          class="boxinput"
-          type="text"
-          placeholder="Quantidade de perguntas do quizz"
-        />
-        <input
-          class="boxinput"
-          type="text"
-          placeholder="Quantidade de níveis do quizz"
-        />
       </div>
-      <button onclick="criarquiz()">Prosseguir para criar perguntas</button>
-    </div>
-    <!-- MENU DE CRIAÇÂO DAS PERGUNTAS -->
-    <div class="corpoquiz">
+
+      <!-------------EXIBIR UM QUIZZ------------>
+      <div class="banner">
+        <img src="./img/wallpaper1.jpg" alt="" />
+        <div class="opacity-escura"></div>
+        <h2>curte topgun?</h2>
+      </div>
+
+      <div class="conteudo">
+        <div class="container">
+          <div class="pergunta">
+            perguntaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?
+          </div>
+          <div class="box">
+            <img src="./img/wallpaper1.jpg" alt="" />
+            <p>topgun</p>
+          </div>
+          <div class="box">
+            <img src="./img/wallpaper1.jpg" alt="" />
+            <p>topgun</p>
+          </div>
+          <div class="box">
+            <img src="./img/wallpaper1.jpg" alt="" />
+            <p>topgun</p>
+          </div>
+          <div class="box">
+            <img src="./img/wallpaper1.jpg" alt="" />
+            <p>topgun</p>
+          </div>
+        </div>
+      </div>
+
+      <!-------------------->
+
+      <!-- MENU DE CRIAÇÂO DO QUIZ -->
+      <div class="corpoquiz none">
+        <h1>Comece pelo começo</h1>
+        <div class="cquiz">
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="Título do seu quizz"
+          />
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="URL da imagem do seu quizz"
+          />
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="Quantidade de perguntas do quizz"
+          />
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="Quantidade de níveis do quizz"
+          />
+        </div>
+        <button onclick="criarquiz()">Prosseguir para criar perguntas</button>
+      </div>
+      <!-- MENU DE CRIAÇÂO DAS PERGUNTAS -->
+      <div class="corpoquiz">
         <h1>Crie suas perguntas</h1>
         <div class="cquiz">
-            <span class="nivel">Pergunta1 <ion-icon name="create-outline"></ion-icon></span>
-          <input class="boxinput" type="text"
-           placeholder="Texto da pergunta" />
+          <span class="nivel"
+            >Pergunta1 <ion-icon name="create-outline"></ion-icon
+          ></span>
+          <input class="boxinput" type="text" placeholder="Texto da pergunta" />
           <input
             class="boxinput"
             type="text"
             placeholder="Cor de fundo da pergunta"
           />
           <span class="nivel">Resposta correta </span>
-          <input
-            class="boxinput"
-            type="text"
-            placeholder="Resposta correta"
-          />
-          <input
-            class="boxinput"
-            type="text"
-            placeholder="URL da imagem "
-          />
+          <input class="boxinput" type="text" placeholder="Resposta correta" />
+          <input class="boxinput" type="text" placeholder="URL da imagem " />
           <span class="nivel">Respostas incorretas </span>
           <input
             class="boxinput"
             type="text"
             placeholder="Resposta incorreta 1"
           />
-          <input
-            class="boxinput"
-            type="text"
-            placeholder="URL da imagem 1"
-          />
+          <input class="boxinput" type="text" placeholder="URL da imagem 1" />
           <input
             class="boxinput"
             type="text"
             placeholder="Resposta incorreta 2"
           />
-          <input
-            class="boxinput"
-            type="text"
-            placeholder="URL da imagem 2"
-          />
+          <input class="boxinput" type="text" placeholder="URL da imagem 2" />
           <input
             class="boxinput"
             type="text"
             placeholder="Resposta incorreta 3"
           />
-          <input
-            class="boxinput"
-            type="text"
-            placeholder="URL da imagem 3"
-          />
-         
+          <input class="boxinput" type="text" placeholder="URL da imagem 3" />
         </div>
         <button onclick="criarquiz()">Prosseguir para criar níveis</button>
       </div>
 
-    <!-- MENU DE CRIAÇÂO DOS NÍVEIS -->
-    <div class="corpoquiz none">
+      <!-- MENU DE CRIAÇÂO DOS NÍVEIS -->
+      <div class="corpoquiz none">
         <h1>Agora, decida os níveis</h1>
         <div class="cquiz">
-            <span class="nivel" >Nivel 1 <ion-icon name="create-outline"></ion-icon></span>
-          <input class="boxinput" type="text"
-           placeholder="Título do nível"
-            />
+          <span class="nivel"
+            >Nivel 1 <ion-icon name="create-outline"></ion-icon
+          ></span>
+          <input class="boxinput" type="text" placeholder="Título do nível" />
           <input
             class="boxinput"
             type="text"
@@ -179,10 +184,11 @@
         </div>
         <button onclick="criarnivel()">Finalizar Quizz</button>
       </div>
-
-        </div>
-</main>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    </main>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
     <script src="./script.js"></script>
   </body>
 </html>
