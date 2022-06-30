@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
-body{
-    background-color: #E5E5E5;
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #e5e5e5;
 }
 .banner img {
     width: 100%;
@@ -85,4 +87,70 @@ body{
     width: 1400px;
     height: 230px;
     border: 5px dashed #D4D4D4;
+}
+/* .topo{
+  height: 70px;
+  width: 100%;
+  background-color: #ec362d;
+  color: white;
+  font-size: 37px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+/*CRIAÇÂO DO QUIZ ---- DAVID */
+.corpoquiz {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.corpoquiz h1 {
+  margin-bottom: 0px;
+  margin-top: 40px;
+}
+.corpoquiz button {
+  width: 368px;
+  height: 54px;
+  border-radius: 15px;
+  background: #ec362d;
+  color: white;
+  font-size: 21px;
+  cursor: pointer;
+}
+.cquiz {
+  margin-top: 30px;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.boxinput {
+  border: 1px solid;
+  font-style: italic;
+  margin: 5px 0;
+  border-radius: 5px;
+  width: 564px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+/*DECISAO DE NIVEl*/
+.nivel{
+  width: 564px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 1;
+  margin: 10px
+}
+
+.none{
+    display: none;
 }
