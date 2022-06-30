@@ -1,30 +1,130 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./reset.css">
-    <link rel="stylesheet" href="./style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./style.css" />
     <title>BuzzQuizz</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="topo">
-            <h1>BuzzQuizz</h1>
-        </div>
+      <div class="topo">
+        <h1>BuzzQuizz</h1>
+      </div>
     </header>
-
+  <!-- MENU DE CRIAÇÂO DO QUIZ -->
+    <div class="corpoquiz none">
+      <h1>Comece pelo começo</h1>
+      <div class="cquiz">
+        <input class="boxinput" type="text" placeholder="Título do seu quizz" />
+        <input
+          class="boxinput"
+          type="text"
+          placeholder="URL da imagem do seu quizz"
+        />
+        <input
+          class="boxinput"
+          type="text"
+          placeholder="Quantidade de perguntas do quizz"
+        />
+        <input
+          class="boxinput"
+          type="text"
+          placeholder="Quantidade de níveis do quizz"
+        />
+      </div>
+      <button onclick="criarquiz()">Prosseguir para criar perguntas</button>
+    </div>
+    <!-- MENU DE CRIAÇÂO DAS PERGUNTAS -->
     <div class="corpoquiz">
-        <h1>Comece pelo começo</h1>
-  <div class="cquiz">
-    <input class="boxinput" type="text" placeholder="Título do seu quizz">
-    <input class="boxinput" type="text" placeholder="URL da imagem do seu quizz">
-    <input class="boxinput" type="text" placeholder="Quantidade de perguntas do quizz">
-    <input class="boxinput" type="text" placeholder="Quantidade de níveis do quizz">
-  </div>
-  <button onclick="criarquiz()">Prosseguir para criar perguntas</button>
-</div>
+        <h1>Crie suas perguntas</h1>
+        <div class="cquiz">
+            <span class="nivel">Pergunta1 <ion-icon name="create-outline"></ion-icon></span>
+          <input class="boxinput" type="text"
+           placeholder="Texto da pergunta" />
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="Cor de fundo da pergunta"
+          />
+          <span class="nivel">Resposta correta </span>
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="Resposta correta"
+          />
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="URL da imagem "
+          />
+          <span class="nivel">Respostas incorretas </span>
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="Resposta incorreta 1"
+          />
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="URL da imagem 1"
+          />
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="Resposta incorreta 2"
+          />
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="URL da imagem 2"
+          />
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="Resposta incorreta 3"
+          />
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="URL da imagem 3"
+          />
+         
+        </div>
+        <button onclick="criarquiz()">Prosseguir para criar níveis</button>
+      </div>
+
+    <!-- MENU DE CRIAÇÂO DOS NÍVEIS -->
+    <div class="corpoquiz none">
+        <h1>Agora, decida os níveis</h1>
+        <div class="cquiz">
+            <span class="nivel" >Nivel 1 <ion-icon name="create-outline"></ion-icon></span>
+          <input class="boxinput" type="text"
+           placeholder="Título do nível"
+            />
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="% de acerto mínima"
+          />
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="URL da imagem do nível"
+          />
+          <input
+            class="boxinput"
+            type="text"
+            placeholder="Descrição do nível"
+          />
+        </div>
+        <button onclick="criarnivel()">Finalizar Quizz</button>
+      </div>
+
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>
