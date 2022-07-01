@@ -135,17 +135,9 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
-/* .topo{
-  height: 70px;
-  width: 100%;
-  background-color: #ec362d;
-  color: white;
-  font-size: 37px;
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
+.resposta-errada{
+    opacity: 30%;
+}
 
 /*CRIAÇÂO DO QUIZ ---- DAVID */
 .corpoquiz {
