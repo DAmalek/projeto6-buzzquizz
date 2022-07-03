@@ -1,10 +1,11 @@
+//MENU CRIAÇÂO
 let tituloquiz;
 let urlquiz;
 let qtdperguntas;
 let qtdniveis;
-
+//PERGUNTAS
 let objtquiz = []
-
+let objtperguntas = []
 let txtpergunta;
 let corpergunta;
 let rpstcorreta;
@@ -15,8 +16,11 @@ let resp2;
 let url2;
 let resp3;
 let url3;
-
-
+//NIVEl
+let  titulonivel;
+let acertomin;
+let urlnivel;
+let descricaonivel;
 
 
 function mudaobanner(){
@@ -59,52 +63,272 @@ objtquiz = {
 	image: urlquiz,
 }	
 
-console.log(tituloquiz)
-console.log(urlquiz)
-console.log(qtdperguntas)
-console.log(qtdniveis)
-console.log(objtquiz)
  document.querySelector(".banner").innerHTML +=
  `<img src="${objtquiz.image}" alt="" />
  <div class="opacity-escura"></div>
  <h2>${objtquiz.title}</h2>
  `
+
+
+
+inseretabelaperguntas()
 trocatelapergunta()
 }
 function trocatelapergunta(){
    document.querySelector('.qpergunta').classList.remove("none")
    document.querySelector('.qmenu').classList.add("none")
-
 }
+function inseretabelaperguntas(){
+    
+for(let i = 0; i < qtdperguntas; i++){
+    document.querySelector(".qpergunta2").innerHTML +=
+    `       
+    <span class="nivel"
+      >Pergunta ${i+1} <ion-icon name="create-outline"></ion-icon
+    ></span>
+    <input class="boxinput txt-${i} " 
+    type="text" placeholder="Texto da pergunta" />
+    <input
+      class="boxinput cor-${i} "
+      type="text"
+      placeholder="Cor de fundo da pergunta"
+    />
+    <span class="nivel">Resposta correta </span>
+    <input class="boxinput rpc-${i} "
+     type="text" placeholder="Resposta correta" />
+    <input class="boxinput urc-${i} "
+     type="text" placeholder="URL da imagem " />
+    <span class="nivel">Respostas incorretas </span>
+    <input
+      class="boxinput rpi1-${i} "
+      type="text"
+      placeholder="Resposta incorreta ${i} "
+    />
+    <input class="boxinput url1-${i} "
+     type="text" placeholder="URL da imagem 1" />
+    <input
+      class="boxinput rpi2-${i} "
+      type="text"
+      placeholder="Resposta incorreta 2"
+    />
+    <input class="boxinput url2-${i} "
+     type="text" placeholder="URL da imagem 2" />
+    <input
+      class="boxinput rpi3-${i} "
+      type="text"
+      placeholder="Resposta incorreta 3"
+    />
+    
+    <input class="boxinput url3-${i} " type="text"
+     placeholder="URL da imagem 3" />
+  `
+}
+}
+
+
+
+
+
+
 function criandopergunta(){
   
-    txtpergunta = document.querySelector(".txt-1").value;
-    corpergunta = document.querySelector(".cor-1").value;
-    rpstcorreta = document.querySelector(".rpc-1").value;
-    urlpergunta = document.querySelector(".url-1").value;
-    resp1 = document.querySelector(".rpi-1").value;
-    url1 = document.querySelector(".url-2").value;
-    resp2 = document.querySelector(".rpi-2").value;
-    url2 = document.querySelector(".url-3").value;
-    resp3 = document.querySelector(".rpi-3").value;
-    url3 = document.querySelector(".url-4").value;
-    console.log(txtpergunta)
-    console.log(corpergunta)
-    console.log(rpstcorreta)
-    console.log(urlpergunta)
-    console.log(resp1)
-    console.log(url1)
-    console.log(resp2)
-    console.log(url2)
-    console.log(resp3)
-    console.log(url3)
+for(let i = 0; i < qtdperguntas; i++){
+    txtpergunta  = document.querySelector(`.txt-${i}`).value;
+    //   corpergunta = document.querySelector(`.cor-${i+1}`).value;
+    //   rpstcorreta = document.querySelector(`.rpc-${i+1}`).value;
+    //   urlpergunta = document.querySelector(`.urc-${i+1}`).value;
+    //   resp1 = document.querySelector(`.rpi1-${i+1}`).value;
+    //   url1 = document.querySelector(`.url1-${i+1}`).value;
+    //   resp2 = document.querySelector(`.rpi2-${i+1}`).value;
+    //   url2 = document.querySelector(`.url2-${i+1}`).value;
+    //   resp3 = document.querySelector(`.rpi3-${i+1}`).value;
+    //   url3 = document.querySelector(`.url3-${i+1}`).value;
+     
+     
+     
+     
+      objtperguntas.title[i].push(txtpergunta) 
+
+      //objeto[0].titulo2.push({id1: 'id1'}
+       
+       console.log(txtpergunta)
+     
     
-    if(txtpergunta.length < 20){
-        alert("texto da pergunta precisa de no minimo 20 letras")
-        return
-    }
-    if(rpstcorreta === "" || resp1 === "" || resp2 === "" || resp3 === ""){
-        alert("necessario resposta")
-        return
-    }
+    
+
+
+
+
+
+
+
+
+
 }
+   objtperguntas = [{ "Título da pergunta 1",
+			color: "#123456",
+			answers: [
+				{
+					text: "Texto da resposta 1",
+					image: "https://http.cat/411.jpg",
+					isCorrectAnswer: true
+				},
+				{
+					text: "Texto da resposta 2",
+					image: "https://http.cat/412.jpg",
+					isCorrectAnswer: false
+				}
+			]
+		},
+		{
+			title: "Título da pergunta 2",
+			color: "#123456",
+			answers: [
+				{
+					text: "Texto da resposta 1",
+					image: "https://http.cat/411.jpg",
+					isCorrectAnswer: true
+				},
+				{
+					text: "Texto da resposta 2",
+					image: "https://http.cat/412.jpg",
+					isCorrectAnswer: false
+				}
+			]
+		},
+		{
+			title: "Título da pergunta 3",
+			color: "#123456",
+			answers: [
+				{
+					text: "Texto da resposta 1",
+					image: "https://http.cat/411.jpg",
+					isCorrectAnswer: true
+				},
+				{
+					text: "Texto da resposta 2",
+					image: "https://http.cat/412.jpg",
+					isCorrectAnswer: false
+				}
+			]
+		}
+   ] 
+
+console.log(objtperguntas)
+    
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    objtperguntas = 
+
+//      [
+//  		{
+//  			title: "Título da pergunta 1",
+//  			color: "#123456",
+//  			 answers:[
+//  				{
+//  					text: "Texto da resposta 1",
+//  					image: "https:http.cat/411.jpg",
+//  					isCorrectAnswer: true
+//  				},
+//  				{
+//  					text: "Texto da resposta 2",
+//  					image: "https:http.cat/412.jpg",
+//  					isCorrectAnswer: false
+//  				}
+//  	           ]
+  
+  
+  
+  
+  
+//          }
+//      ]
+
+  
+
+
+
+
+
+
+
+
+
+
+
+//      if(txtpergunta.length < 20){
+//          alert("texto da pergunta precisa de no minimo 20 letras")
+//          return
+//      }
+//      if(rpstcorreta === ""){
+//          alert("necessario resposta correta")
+//          return
+//      }else if(resp1 === "" && (resp2 === "" && resp3 === "")){
+//          alert("insira ao menos uma resposta incorreta")
+//          return    }
+//  mudatelanivel()
+//  inseretabeladenivel()
+}
+
+
+
+// function mudatelanivel(){
+//     document.querySelector(".qnivel").classList.remove("none")
+//     document.querySelector(".qpergunta").classList.add("none")
+// }
+
+
+// function inseretabeladenivel(){
+//     for(let i = 0; i < qtdniveis; i++){
+//         document.querySelector('.qnivel2').innerHTML +=
+//           `<span class="nivel "
+//             >Nivel ${i+1} <ion-icon name="create-outline"></ion-icon
+//           ></span>
+//           <input class="boxinput titulonv-${i}" type="text" placeholder="Título do nível" />
+//           <input
+//             class="boxinput porcertagem-${i}"
+//             type="text"
+//             placeholder="% de acerto mínima"
+//           />
+//           <input
+//             class="boxinput urlnv-${i}"
+//             type="text"
+//             placeholder="URL da imagem do nível"
+//           />
+//           <input
+//             class="boxinput descrinl-${i}"
+//             type="text"
+//             placeholder="Descrição do nível"
+//           />
+//         `
+// }
+// }
+// function criarnivel(){
+//     for(let i = 0; i < qtdniveis; i++){
+//     titulonivel = document.querySelector(`titulonv-${i}`).value
+//     acertomin = document.querySelector(`porcentagem-${i}`).value
+//     urlnivel = document.querySelector(`urlnv-${i}`).value
+//     descricaonivel = document.querySelector(`descrinl-${i}`).value
+
+//     }
+// }
