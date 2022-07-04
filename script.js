@@ -92,10 +92,21 @@ function selecionarOpcao(Eonclick,numPergunta,numResposta){
             box.classList.add("opacity-clara");
         }
         box.removeAttribute("onClick")
+        let n = data.questions[numPergunta].answers
+
+        if (n.isCorrectAnswer === true){
+            box.classList.add("opcao-correta")
+        }else {
+            box.classList.add("opcao-errata")
+        }
+                
     });
-
+    
+    
 }
-
+function scrollagem(){
+    
+}
 function limparPagina(){
     main.innerHTML = "";
 }
