@@ -17,7 +17,7 @@ let url2;
 let resp3;
 let url3;
 //NIVEl
-let levels = []
+let level = []
 let titulonivel;
 let acertomin;
 let urlnivel;
@@ -167,12 +167,10 @@ for(let i = 0; i < qtdperguntas; i++){
         }]
     }
         question[i].answers.push(resposta)
-       console.log(txtpergunta)
-}
+       
+} 
    
-
 console.log(question)
-    
    
 
 
@@ -238,7 +236,7 @@ function criarnivel(){
     urlnivel = document.querySelector(`.urlnv${i}`).value;
     descricaonivel = document.querySelector(`.descrinl${i}`).value;
 
-    levels[i] =
+    level[i] =
 		{
 			title: titulonivel,
 			image: urlnivel,
@@ -247,6 +245,17 @@ function criarnivel(){
 		}
 	
     }
-    console.log(levels)
+    console.log(level)
 
+
+  
+
+  objtquiz = {
+    title: tituloquiz,
+    image: urlquiz,
+    questions :  question,
+    levels : level,
+  }	
+
+  console.log(objtquiz)
 } 
