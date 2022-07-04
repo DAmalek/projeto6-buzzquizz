@@ -5,7 +5,7 @@ let qtdperguntas;
 let qtdniveis;
 //PERGUNTAS
 let objtquiz = []
-let objtperguntas = []
+let question = []
 let txtpergunta;
 let corpergunta;
 let rpstcorreta;
@@ -17,7 +17,8 @@ let url2;
 let resp3;
 let url3;
 //NIVEl
-let  titulonivel;
+let levels = []
+let titulonivel;
 let acertomin;
 let urlnivel;
 let descricaonivel;
@@ -128,93 +129,49 @@ for(let i = 0; i < qtdperguntas; i++){
 
 
 
-
-
 function criandopergunta(){
   
 for(let i = 0; i < qtdperguntas; i++){
-    txtpergunta  = document.querySelector(`.txt-${i}`).value;
-    //   corpergunta = document.querySelector(`.cor-${i+1}`).value;
-    //   rpstcorreta = document.querySelector(`.rpc-${i+1}`).value;
-    //   urlpergunta = document.querySelector(`.urc-${i+1}`).value;
-    //   resp1 = document.querySelector(`.rpi1-${i+1}`).value;
-    //   url1 = document.querySelector(`.url1-${i+1}`).value;
-    //   resp2 = document.querySelector(`.rpi2-${i+1}`).value;
-    //   url2 = document.querySelector(`.url2-${i+1}`).value;
-    //   resp3 = document.querySelector(`.rpi3-${i+1}`).value;
-    //   url3 = document.querySelector(`.url3-${i+1}`).value;
+      txtpergunta  = document.querySelector(`.txt-${i}`).value;
+      corpergunta = document.querySelector(`.cor-${i}`).value;
+      rpstcorreta = document.querySelector(`.rpc-${i}`).value;
+      urlpergunta = document.querySelector(`.urc-${i}`).value;
+      resp1 = document.querySelector(`.rpi1-${i}`).value;
+      url1 = document.querySelector(`.url1-${i}`).value;
+      resp2 = document.querySelector(`.rpi2-${i}`).value;
+      url2 = document.querySelector(`.url2-${i}`).value;
+      resp3 = document.querySelector(`.rpi3-${i}`).value;
+      url3 = document.querySelector(`.url3-${i}`).value;
+    let resp = [resp1,resp2,resp3 ]
+    let respurl = [url1, url2, url3]
+    let resposta = []
      
-     
-     
-     
-      objtperguntas.title[i].push(txtpergunta) 
+     for(let i = 0; i < 3; i++){
+        if(resp[i] !== ""){
+        resposta[i] = {
+            text:resp[i],
+            image: respurl[i],
+            isCorrectAnswer: false
+        }
+        }
 
-      //objeto[0].titulo2.push({id1: 'id1'}
-       
+     }
+     
+     question[i] = {
+        title: txtpergunta,
+        color: corpergunta,
+        answers:[{
+            text:rpstcorreta,
+            image: urlpergunta,
+            isCorrectAnswer: true
+        }]
+    }
+        question[i].answers.push(resposta)
        console.log(txtpergunta)
-     
-    
-    
-
-
-
-
-
-
-
-
-
 }
-   objtperguntas = [{ "Título da pergunta 1",
-			color: "#123456",
-			answers: [
-				{
-					text: "Texto da resposta 1",
-					image: "https://http.cat/411.jpg",
-					isCorrectAnswer: true
-				},
-				{
-					text: "Texto da resposta 2",
-					image: "https://http.cat/412.jpg",
-					isCorrectAnswer: false
-				}
-			]
-		},
-		{
-			title: "Título da pergunta 2",
-			color: "#123456",
-			answers: [
-				{
-					text: "Texto da resposta 1",
-					image: "https://http.cat/411.jpg",
-					isCorrectAnswer: true
-				},
-				{
-					text: "Texto da resposta 2",
-					image: "https://http.cat/412.jpg",
-					isCorrectAnswer: false
-				}
-			]
-		},
-		{
-			title: "Título da pergunta 3",
-			color: "#123456",
-			answers: [
-				{
-					text: "Texto da resposta 1",
-					image: "https://http.cat/411.jpg",
-					isCorrectAnswer: true
-				},
-				{
-					text: "Texto da resposta 2",
-					image: "https://http.cat/412.jpg",
-					isCorrectAnswer: false
-				}
-			]
-		}
-   ] 
+   
 
-console.log(objtperguntas)
+console.log(question)
     
    
 
@@ -227,108 +184,69 @@ console.log(objtperguntas)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-//    objtperguntas = 
-
-//      [
-//  		{
-//  			title: "Título da pergunta 1",
-//  			color: "#123456",
-//  			 answers:[
-//  				{
-//  					text: "Texto da resposta 1",
-//  					image: "https:http.cat/411.jpg",
-//  					isCorrectAnswer: true
-//  				},
-//  				{
-//  					text: "Texto da resposta 2",
-//  					image: "https:http.cat/412.jpg",
-//  					isCorrectAnswer: false
-//  				}
-//  	           ]
-  
-  
-  
-  
-  
-//          }
-//      ]
-
-  
-
-
-
-
-
-
-
-
-
-
-
-//      if(txtpergunta.length < 20){
-//          alert("texto da pergunta precisa de no minimo 20 letras")
-//          return
-//      }
-//      if(rpstcorreta === ""){
-//          alert("necessario resposta correta")
-//          return
-//      }else if(resp1 === "" && (resp2 === "" && resp3 === "")){
-//          alert("insira ao menos uma resposta incorreta")
-//          return    }
-//  mudatelanivel()
-//  inseretabeladenivel()
+     if(txtpergunta.length < 20){
+         alert("texto da pergunta precisa de no minimo 20 letras")
+         return
+     }
+     if(rpstcorreta === ""){
+         alert("necessario resposta correta")
+         return
+     }else if(resp1 === "" && (resp2 === "" && resp3 === "")){
+         alert("insira ao menos uma resposta incorreta")
+         return    }
+ mudatelanivel()
+ inseretabeladenivel()
 }
 
 
 
-// function mudatelanivel(){
-//     document.querySelector(".qnivel").classList.remove("none")
-//     document.querySelector(".qpergunta").classList.add("none")
-// }
+function mudatelanivel(){
+    document.querySelector(".qnivel").classList.remove("none")
+    document.querySelector(".qpergunta").classList.add("none")
+}
 
 
-// function inseretabeladenivel(){
-//     for(let i = 0; i < qtdniveis; i++){
-//         document.querySelector('.qnivel2').innerHTML +=
-//           `<span class="nivel "
-//             >Nivel ${i+1} <ion-icon name="create-outline"></ion-icon
-//           ></span>
-//           <input class="boxinput titulonv-${i}" type="text" placeholder="Título do nível" />
-//           <input
-//             class="boxinput porcertagem-${i}"
-//             type="text"
-//             placeholder="% de acerto mínima"
-//           />
-//           <input
-//             class="boxinput urlnv-${i}"
-//             type="text"
-//             placeholder="URL da imagem do nível"
-//           />
-//           <input
-//             class="boxinput descrinl-${i}"
-//             type="text"
-//             placeholder="Descrição do nível"
-//           />
-//         `
-// }
-// }
-// function criarnivel(){
-//     for(let i = 0; i < qtdniveis; i++){
-//     titulonivel = document.querySelector(`titulonv-${i}`).value
-//     acertomin = document.querySelector(`porcentagem-${i}`).value
-//     urlnivel = document.querySelector(`urlnv-${i}`).value
-//     descricaonivel = document.querySelector(`descrinl-${i}`).value
+function inseretabeladenivel(){
+    for(let i = 0; i < qtdniveis; i++){
+        document.querySelector('.qnivel2').innerHTML +=
+          `<span class="nivel "
+            >Nivel ${i+1} <ion-icon name="create-outline"></ion-icon
+          ></span>
+          <input class="boxinput titulonv${i}" type="text" placeholder="Título do nível" />
+          <input
+            class="boxinput porcentagem${i}"
+            type="text"
+            placeholder="% de acerto mínima"
+          />
+          <input
+            class="boxinput urlnv${i}"
+            type="text"
+            placeholder="URL da imagem do nível"
+          />
+          <input
+            class="boxinput descrinl${i}"
+            type="text"
+            placeholder="Descrição do nível"
+          />
+        `
+}
+}
+function criarnivel(){
+    for(let i = 0; i < qtdniveis; i++){
+    titulonivel = document.querySelector(`.titulonv${i}`).value;
+    acertomin = document.querySelector(`.porcentagem${i}`).value;
+    urlnivel = document.querySelector(`.urlnv${i}`).value;
+    descricaonivel = document.querySelector(`.descrinl${i}`).value;
 
-//     }
-// }
+    levels[i] =
+		{
+			title: titulonivel,
+			image: urlnivel,
+			text: descricaonivel,
+			minValue: acertomin,
+		}
+	
+    }
+    console.log(levels)
+
+} 
