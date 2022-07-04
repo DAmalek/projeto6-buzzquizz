@@ -107,7 +107,14 @@ function mudaobanner(){
     if( urlquiz === ""){
         alert("preencha todos os campos")
         return
-    }
+    }try {
+       let url = new URL(urlquiz)
+       console.log("Valid URL!")
+     } catch(err) {
+         alert("utilizar uma URl valida para imagem")
+         return
+     }
+   
 
     if(tituloquiz.length > 65 || tituloquiz.length < 20 ){
         alert("O texto deve conter mais de 20 e menso de 65 caracteres.")
@@ -130,6 +137,8 @@ function mudaobanner(){
         return
     }
     
+    
+   
 
 
 
@@ -241,10 +250,12 @@ for(let i = 0; i < qtdperguntas; i++){
         }]
     }
         question[i].answers.push(resposta)
-       
-} 
+       console.log(txtpergunta)
+}
    
+
 console.log(question)
+    
    
 
 
@@ -252,20 +263,48 @@ console.log(question)
 
 
 
-
-
+   if(corpergunta < 6){
+    alert("Inserir 6 caracteres de letras ou numeros para cor da pergunta")
+   }
+   if(corpergunta[0] !== "#"){
+    alert("colocar p simbolo # no inicio da cor")
+    return
+   }
 
 
      if(txtpergunta.length < 20){
          alert("texto da pergunta precisa de no minimo 20 letras")
          return
-     }
+     }try {
+      let url = new URL(urlpergunta)
+      console.log("Valid URL!")
+    } catch(err) {
+        alert("utilizar uma URl valida para imagem")
+        return
+    }
+
      if(rpstcorreta === ""){
          alert("necessario resposta correta")
          return
      }else if(resp1 === "" && (resp2 === "" && resp3 === "")){
          alert("insira ao menos uma resposta incorreta")
-         return    }
+         return 
+           }
+           if(url1 !== ""){
+            try {
+              let url = new URL(url1)
+              console.log("Valid URL!")
+            } catch(err) {
+                alert("utilizar uma URl valida para imagem")
+                return
+            }
+          }
+          
+
+
+
+
+
  mudatelanivel()
  inseretabeladenivel()
 }
@@ -321,15 +360,31 @@ function criarnivel(){
     }
     console.log(level)
 
-
-  
-
-  objtquiz = {
-    title: tituloquiz,
-    image: urlquiz,
-    questions :  question,
-    levels : level,
-  }	
-
-  console.log(objtquiz)
+    objtquiz = {
+      title: tituloquiz,
+       image: urlquiz,
+       questions :  question,
+       levels : level,
+     }	
+     console.log(objtquiz)
+daopost()
 } 
+
+
+ function daopost(){
+  let enviando = axios.post(
+    "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes",
+    objtquiz
+  );
+  enviando.then(enviouquizz);
+  enviando.catch(naoenviou);
+ }
+ function enviouquizz(){
+    alert("quiz enviado com sucesso")
+    console.log("ala enviou o quizz")
+
+ }
+ function naoenviou(){
+  alert("não enviou o quizz não")
+  console.log("não enviou")
+ }
