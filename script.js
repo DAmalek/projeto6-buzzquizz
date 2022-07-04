@@ -59,22 +59,39 @@ function quizzGame(resposta){
     <img src="${data.image}" alt="" />
     <div class="opacity-escura"></div>
     <h2>${data.title}</h2>
-    </div>`
+    </div>
+    <div class="conteudo"></div>`
     for (let i=0;i<data.questions.length;i++){
         let quizzQuestion = data.questions[i]; 
-        main.innerHTML += `
-        <div class="conteudo">
+        main.querySelector(".conteudo").innerHTML += `
+        
           <div class="container">
             <div class="pergunta" style="background: ${quizzQuestion.color};">
               ${quizzQuestion.title}
             </div>
-          </div>
-        </div>  `
+          </div>  `
+       renderizaRespostas(data, i);
     }
-    const quizzResp = document.querySelector(".pergunta");
+}
+function renderizaRespostas(data, j){
+    const quizzResp = document.querySelector(".container:last-child");
+    for (let i=0;i<data.questions[j].answers.length;i++){
+        let quizzAnswer = data.questions[j].answers[i];
+        quizzResp.innerHTML += `<div class="box" onClick="selecionarOpcao(this)">
+        <img src=${quizzAnswer.image} alt="" />
+        <p>${quizzAnswer.text}</p>
+      </div>`
+
+    }
+}
+function selecionarOpcao(elemento){
+    const opcoes = elemento.parentNode.querySelectorAll(".box")
+    opcoes.forEach(box => { box.classList.add("opacity-clara")
     
+    });
 
 }
+
 function limparPagina(){
     main.innerHTML = "";
 }
