@@ -21,12 +21,13 @@
           <p>Você não criou nenhum quizz ainda :(</p>
           <button>Criar Quizz</button>
         </div>
-        <p>Todos os Quizzes</p>
+        <div class="titulo-quizz"><p>Todos os Quizzes</p></div>
         <div class="quizz-container">
-          
-          <div class="quizz-box">
+         
+          <!--<div class="quizz-box">
             <img src="./img/wallpaper1.jpg" alt="" />
             <p>TITULO DO QUIZZ</p>
+            <div class="gradiente"></div>
           </div>
           <div class="quizz-box">
             <img src="./img/wallpaper1.jpg" alt="" />
@@ -55,15 +56,16 @@
           <div class="quizz-box">
             <img src="./img/wallpaper1.jpg" alt="" />
             <p>TITULO DO QUIZZ</p>
-          </div>
+          </div> -->
+        
         </div>
       </div>
 
       <!-------------EXIBIR UM QUIZZ------------>
       <div class="banner">
-        <img src="./img/wallpaper1.jpg" alt="" />
+        <!--<img src="./img/wallpaper1.jpg" alt="" />
         <div class="opacity-escura"></div>
-        <h2>curte topgun?</h2>
+        <h2>curte topgun?</h2> -->
       </div>
 
       <div class="conteudo">
@@ -123,8 +125,8 @@
       <!-- MENU DE CRIAÇÂO DAS PERGUNTAS -->
       <div class="corpoquiz qpergunta none">
         <h1>Crie suas perguntas</h1>
-        <div class="cquiz qpergunta2">
-          <!-- <span class="nivel"
+        <div class="cquiz">
+          <span class="nivel"
             >Pergunta1 <ion-icon name="create-outline"></ion-icon
           ></span>
           <input class="boxinput txt-1" 
@@ -161,7 +163,7 @@
           />
           
           <input class="boxinput url-4" type="text"
-           placeholder="URL da imagem 3" /> -->
+           placeholder="URL da imagem 3" />
         </div>
         <button onclick="criandopergunta()">Prosseguir para criar níveis</button>
       </div>
@@ -169,12 +171,11 @@
       <!-- MENU DE CRIAÇÂO DOS NÍVEIS -->
       <div class="corpoquiz qnivel none">
         <h1>Agora, decida os níveis</h1>
-         <div class="cquiz qnivel2">
-         <!-- <span class="nivel"
+        <div class="cquiz">
+          <span class="nivel"
             >Nivel 1 <ion-icon name="create-outline"></ion-icon
           ></span>
-          <input class="boxinput" type="text"
-           placeholder="Título do nível" />
+          <input class="boxinput" type="text" placeholder="Título do nível" />
           <input
             class="boxinput"
             type="text"
@@ -189,8 +190,8 @@
             class="boxinput"
             type="text"
             placeholder="Descrição do nível"
-          />-->
-        </div> 
+          />
+        </div>
         <button onclick="criarnivel()">Finalizar Quizz</button>
       </div>
     </main>
@@ -198,6 +199,7 @@
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>

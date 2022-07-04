@@ -1,11 +1,15 @@
-//MENU CRIAÇÂO
+//--------daniel-----
+const urlAPI = "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes"
+const main = document.querySelector("main")
+//-------------------
+
 let tituloquiz;
 let urlquiz;
 let qtdperguntas;
 let qtdniveis;
-//PERGUNTAS
+
 let objtquiz = []
-let question = []
+
 let txtpergunta;
 let corpergunta;
 let rpstcorreta;
@@ -16,14 +20,65 @@ let resp2;
 let url2;
 let resp3;
 let url3;
-//NIVEl
-let levels = []
-let titulonivel;
-let acertomin;
-let urlnivel;
-let descricaonivel;
+//----------CARREGAR QUIZZ---------------
+function carregarListas(){
+    console.log("carregas lista de quizzes")
+    const promessa = axios.get(`${urlAPI}`);
+    promessa.then(renderizarQuizzes);
+}
 
+function renderizarQuizzes(resposta){
+    console.log(resposta.data)
+    let quizzContainer = document.querySelector(".quizz-container");
 
+    
+    for (let i=0; i<resposta.data.length; i++){
+        let tempQuizz = resposta.data[i];
+        
+        quizzContainer.innerHTML += `<div class="quizz-box" >
+        <img src="${tempQuizz.image}" >
+        <p>${tempQuizz.title}</p>
+        <div class="gradiente" id="${tempQuizz.id}" onClick="carregarQuizz(this)"></div>
+      </div>`
+    }   
+}
+function carregarQuizz(elemento){
+    const id =  elemento.id;
+    console.log(elemento.id);
+    const promessa = axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes/${id}`);
+    limparPagina();
+    promessa.then(quizzGame);
+    
+    
+}
+function quizzGame(resposta){
+    
+    console.log(resposta.data);
+    const data = resposta.data;
+    main.innerHTML += `<div class="banner">
+    <img src="${data.image}" alt="" />
+    <div class="opacity-escura"></div>
+    <h2>${data.title}</h2>
+    </div>`
+    for (let i=0;i<data.questions.length;i++){
+        let quizzQuestion = data.questions[i]; 
+        main.innerHTML += `
+        <div class="conteudo">
+          <div class="container">
+            <div class="pergunta" style="background: ${quizzQuestion.color};">
+              ${quizzQuestion.title}
+            </div>
+          </div>
+        </div>  `
+    }
+    const quizzResp = document.querySelector(".pergunta");
+    
+
+}
+function limparPagina(){
+    main.innerHTML = "";
+}
+//--------------------------------------
 function mudaobanner(){
     tituloquiz = document.querySelector(".tituloquiz").value;
     urlquiz = document.querySelector(".imagemquiz").value
@@ -64,189 +119,54 @@ objtquiz = {
 	image: urlquiz,
 }	
 
+console.log(tituloquiz)
+console.log(urlquiz)
+console.log(qtdperguntas)
+console.log(qtdniveis)
+console.log(objtquiz)
  document.querySelector(".banner").innerHTML +=
  `<img src="${objtquiz.image}" alt="" />
  <div class="opacity-escura"></div>
  <h2>${objtquiz.title}</h2>
  `
-
-
-
-inseretabelaperguntas()
 trocatelapergunta()
 }
 function trocatelapergunta(){
    document.querySelector('.qpergunta').classList.remove("none")
    document.querySelector('.qmenu').classList.add("none")
+
 }
-function inseretabelaperguntas(){
-    
-for(let i = 0; i < qtdperguntas; i++){
-    document.querySelector(".qpergunta2").innerHTML +=
-    `       
-    <span class="nivel"
-      >Pergunta ${i+1} <ion-icon name="create-outline"></ion-icon
-    ></span>
-    <input class="boxinput txt-${i} " 
-    type="text" placeholder="Texto da pergunta" />
-    <input
-      class="boxinput cor-${i} "
-      type="text"
-      placeholder="Cor de fundo da pergunta"
-    />
-    <span class="nivel">Resposta correta </span>
-    <input class="boxinput rpc-${i} "
-     type="text" placeholder="Resposta correta" />
-    <input class="boxinput urc-${i} "
-     type="text" placeholder="URL da imagem " />
-    <span class="nivel">Respostas incorretas </span>
-    <input
-      class="boxinput rpi1-${i} "
-      type="text"
-      placeholder="Resposta incorreta ${i} "
-    />
-    <input class="boxinput url1-${i} "
-     type="text" placeholder="URL da imagem 1" />
-    <input
-      class="boxinput rpi2-${i} "
-      type="text"
-      placeholder="Resposta incorreta 2"
-    />
-    <input class="boxinput url2-${i} "
-     type="text" placeholder="URL da imagem 2" />
-    <input
-      class="boxinput rpi3-${i} "
-      type="text"
-      placeholder="Resposta incorreta 3"
-    />
-    
-    <input class="boxinput url3-${i} " type="text"
-     placeholder="URL da imagem 3" />
-  `
-}
-}
-
-
-
-
 function criandopergunta(){
   
-for(let i = 0; i < qtdperguntas; i++){
-      txtpergunta  = document.querySelector(`.txt-${i}`).value;
-      corpergunta = document.querySelector(`.cor-${i}`).value;
-      rpstcorreta = document.querySelector(`.rpc-${i}`).value;
-      urlpergunta = document.querySelector(`.urc-${i}`).value;
-      resp1 = document.querySelector(`.rpi1-${i}`).value;
-      url1 = document.querySelector(`.url1-${i}`).value;
-      resp2 = document.querySelector(`.rpi2-${i}`).value;
-      url2 = document.querySelector(`.url2-${i}`).value;
-      resp3 = document.querySelector(`.rpi3-${i}`).value;
-      url3 = document.querySelector(`.url3-${i}`).value;
-    let resp = [resp1,resp2,resp3 ]
-    let respurl = [url1, url2, url3]
-    let resposta = []
-     
-     for(let i = 0; i < 3; i++){
-        if(resp[i] !== ""){
-        resposta[i] = {
-            text:resp[i],
-            image: respurl[i],
-            isCorrectAnswer: false
-        }
-        }
-
-     }
-     
-     question[i] = {
-        title: txtpergunta,
-        color: corpergunta,
-        answers:[{
-            text:rpstcorreta,
-            image: urlpergunta,
-            isCorrectAnswer: true
-        }]
-    }
-        question[i].answers.push(resposta)
-       console.log(txtpergunta)
-}
-   
-
-console.log(question)
+    txtpergunta = document.querySelector(".txt-1").value;
+    corpergunta = document.querySelector(".cor-1").value;
+    rpstcorreta = document.querySelector(".rpc-1").value;
+    urlpergunta = document.querySelector(".url-1").value;
+    resp1 = document.querySelector(".rpi-1").value;
+    url1 = document.querySelector(".url-2").value;
+    resp2 = document.querySelector(".rpi-2").value;
+    url2 = document.querySelector(".url-3").value;
+    resp3 = document.querySelector(".rpi-3").value;
+    url3 = document.querySelector(".url-4").value;
+    console.log(txtpergunta)
+    console.log(corpergunta)
+    console.log(rpstcorreta)
+    console.log(urlpergunta)
+    console.log(resp1)
+    console.log(url1)
+    console.log(resp2)
+    console.log(url2)
+    console.log(resp3)
+    console.log(url3)
     
-   
-
-
-
-
-
-
-
-
-
-
-     if(txtpergunta.length < 20){
-         alert("texto da pergunta precisa de no minimo 20 letras")
-         return
-     }
-     if(rpstcorreta === ""){
-         alert("necessario resposta correta")
-         return
-     }else if(resp1 === "" && (resp2 === "" && resp3 === "")){
-         alert("insira ao menos uma resposta incorreta")
-         return    }
- mudatelanivel()
- inseretabeladenivel()
-}
-
-
-
-function mudatelanivel(){
-    document.querySelector(".qnivel").classList.remove("none")
-    document.querySelector(".qpergunta").classList.add("none")
-}
-
-
-function inseretabeladenivel(){
-    for(let i = 0; i < qtdniveis; i++){
-        document.querySelector('.qnivel2').innerHTML +=
-          `<span class="nivel "
-            >Nivel ${i+1} <ion-icon name="create-outline"></ion-icon
-          ></span>
-          <input class="boxinput titulonv${i}" type="text" placeholder="Título do nível" />
-          <input
-            class="boxinput porcentagem${i}"
-            type="text"
-            placeholder="% de acerto mínima"
-          />
-          <input
-            class="boxinput urlnv${i}"
-            type="text"
-            placeholder="URL da imagem do nível"
-          />
-          <input
-            class="boxinput descrinl${i}"
-            type="text"
-            placeholder="Descrição do nível"
-          />
-        `
-}
-}
-function criarnivel(){
-    for(let i = 0; i < qtdniveis; i++){
-    titulonivel = document.querySelector(`.titulonv${i}`).value;
-    acertomin = document.querySelector(`.porcentagem${i}`).value;
-    urlnivel = document.querySelector(`.urlnv${i}`).value;
-    descricaonivel = document.querySelector(`.descrinl${i}`).value;
-
-    levels[i] =
-		{
-			title: titulonivel,
-			image: urlnivel,
-			text: descricaonivel,
-			minValue: acertomin,
-		}
-	
+    if(txtpergunta.length < 20){
+        alert("texto da pergunta precisa de no minimo 20 letras")
+        return
     }
-    console.log(levels)
+    if(rpstcorreta === "" || resp1 === "" || resp2 === "" || resp3 === ""){
+        alert("necessario resposta")
+        return
+    }
+}
 
-} 
+carregarListas()
