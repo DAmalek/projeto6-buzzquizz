@@ -1,4 +1,10 @@
 //MENU CRIAÇÂO
+//--------daniel-----
+const urlAPI = "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes"
+const main = document.querySelector("main")
+let data;
+//-------------------
+
 let tituloquiz;
 let urlquiz;
 let qtdperguntas;
@@ -24,6 +30,74 @@ let urlnivel;
 let descricaonivel;
 
 
+    
+    for (let i=0; i<resposta.data.length; i++){
+        let tempQuizz = resposta.data[i];
+        
+        quizzContainer.innerHTML += `<div class="quizz-box" >
+        <img src="${tempQuizz.image}" >
+        <p>${tempQuizz.title}</p>
+        <div class="gradiente" id="${tempQuizz.id}" onClick="carregarQuizz(this)"></div>
+      </div>`
+    }   
+
+function carregarQuizz(elemento){
+    const id =  elemento.id;
+    console.log(elemento.id);
+    const promessa = axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes/${id}`);
+    limparPagina();
+    promessa.then(quizzGame);
+    
+    
+}
+function quizzGame(resposta){
+    
+    console.log(resposta.data);
+    data = resposta.data;
+    main.innerHTML += `<div class="banner">
+    <img src="${data.image}" alt="" />
+    <div class="opacity-escura"></div>
+    <h2>${data.title}</h2>
+    </div>
+    <div class="conteudo"></div>`
+    for (let i=0;i<data.questions.length;i++){
+        let quizzQuestion = data.questions[i]; 
+        main.querySelector(".conteudo").innerHTML += `
+        
+          <div class="container">
+            <div class="pergunta" style="background: ${quizzQuestion.color};">
+              ${quizzQuestion.title}
+            </div>
+          </div>  `
+       renderizaRespostas(i);
+    }
+}
+function renderizaRespostas(j){
+    const quizzResp = document.querySelector(".container:last-child");
+    for (let i=0;i<data.questions[j].answers.length;i++){
+        let quizzAnswer = data.questions[j].answers[i];
+        quizzResp.innerHTML += `<div class="box" onClick="selecionarOpcao(this, ${j}, ${i})">
+        <img src=${quizzAnswer.image} alt="" />
+        <p>${quizzAnswer.text}</p>
+      </div>`
+
+    }
+}
+function selecionarOpcao(Eonclick,numPergunta,numResposta){
+    const opcoes = Eonclick.parentNode.querySelectorAll(".box")
+    opcoes.forEach(box => { 
+        if(Eonclick !== box){
+            box.classList.add("opacity-clara");
+        }
+        box.removeAttribute("onClick")
+    });
+
+}
+
+function limparPagina(){
+    main.innerHTML = "";
+}
+//--------------------------------------
 function mudaobanner(){
     tituloquiz = document.querySelector(".tituloquiz").value;
     urlquiz = document.querySelector(".imagemquiz").value
