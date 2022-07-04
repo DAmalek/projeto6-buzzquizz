@@ -17,13 +17,61 @@ let url2;
 let resp3;
 let url3;
 //NIVEl
-let levels = []
+let level = []
 let titulonivel;
 let acertomin;
 let urlnivel;
 let descricaonivel;
 
 
+    
+    for (let i=0; i<resposta.data.length; i++){
+        let tempQuizz = resposta.data[i];
+        
+        quizzContainer.innerHTML += `<div class="quizz-box" >
+        <img src="${tempQuizz.image}" >
+        <p>${tempQuizz.title}</p>
+        <div class="gradiente" id="${tempQuizz.id}" onClick="carregarQuizz(this)"></div>
+      </div>`
+    }   
+
+function carregarQuizz(elemento){
+    const id =  elemento.id;
+    console.log(elemento.id);
+    const promessa = axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes/${id}`);
+    limparPagina();
+    promessa.then(quizzGame);
+    
+    
+}
+function quizzGame(resposta){
+    
+    console.log(resposta.data);
+    const data = resposta.data;
+    main.innerHTML += `<div class="banner">
+    <img src="${data.image}" alt="" />
+    <div class="opacity-escura"></div>
+    <h2>${data.title}</h2>
+    </div>`
+    for (let i=0;i<data.questions.length;i++){
+        let quizzQuestion = data.questions[i]; 
+        main.innerHTML += `
+        <div class="conteudo">
+          <div class="container">
+            <div class="pergunta" style="background: ${quizzQuestion.color};">
+              ${quizzQuestion.title}
+            </div>
+          </div>
+        </div>  `
+    }
+    const quizzResp = document.querySelector(".pergunta");
+    
+
+}
+function limparPagina(){
+    main.innerHTML = "";
+}
+//--------------------------------------
 function mudaobanner(){
     tituloquiz = document.querySelector(".tituloquiz").value;
     urlquiz = document.querySelector(".imagemquiz").value
@@ -33,7 +81,14 @@ function mudaobanner(){
     if( urlquiz === ""){
         alert("preencha todos os campos")
         return
-    }
+    }try {
+       let url = new URL(urlquiz)
+       console.log("Valid URL!")
+     } catch(err) {
+         alert("utilizar uma URl valida para imagem")
+         return
+     }
+   
 
     if(tituloquiz.length > 65 || tituloquiz.length < 20 ){
         alert("O texto deve conter mais de 20 e menso de 65 caracteres.")
@@ -56,6 +111,8 @@ function mudaobanner(){
         return
     }
     
+    
+   
 
 
 
@@ -180,20 +237,48 @@ console.log(question)
 
 
 
-
-
+   if(corpergunta < 6){
+    alert("Inserir 6 caracteres de letras ou numeros para cor da pergunta")
+   }
+   if(corpergunta[0] !== "#"){
+    alert("colocar p simbolo # no inicio da cor")
+    return
+   }
 
 
      if(txtpergunta.length < 20){
          alert("texto da pergunta precisa de no minimo 20 letras")
          return
-     }
+     }try {
+      let url = new URL(urlpergunta)
+      console.log("Valid URL!")
+    } catch(err) {
+        alert("utilizar uma URl valida para imagem")
+        return
+    }
+
      if(rpstcorreta === ""){
          alert("necessario resposta correta")
          return
      }else if(resp1 === "" && (resp2 === "" && resp3 === "")){
          alert("insira ao menos uma resposta incorreta")
-         return    }
+         return 
+           }
+           if(url1 !== ""){
+            try {
+              let url = new URL(url1)
+              console.log("Valid URL!")
+            } catch(err) {
+                alert("utilizar uma URl valida para imagem")
+                return
+            }
+          }
+          
+
+
+
+
+
  mudatelanivel()
  inseretabeladenivel()
 }
@@ -238,7 +323,7 @@ function criarnivel(){
     urlnivel = document.querySelector(`.urlnv${i}`).value;
     descricaonivel = document.querySelector(`.descrinl${i}`).value;
 
-    levels[i] =
+    level[i] =
 		{
 			title: titulonivel,
 			image: urlnivel,
@@ -247,6 +332,33 @@ function criarnivel(){
 		}
 	
     }
-    console.log(levels)
+    console.log(level)
 
+    objtquiz = {
+      title: tituloquiz,
+       image: urlquiz,
+       questions :  question,
+       levels : level,
+     }	
+     console.log(objtquiz)
+daopost()
 } 
+
+
+ function daopost(){
+  let enviando = axios.post(
+    "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes",
+    objtquiz
+  );
+  enviando.then(enviouquizz);
+  enviando.catch(naoenviou);
+ }
+ function enviouquizz(){
+    alert("quiz enviado com sucesso")
+    console.log("ala enviou o quizz")
+
+ }
+ function naoenviou(){
+  alert("não enviou o quizz não")
+  console.log("não enviou")
+ }
