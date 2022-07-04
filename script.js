@@ -1,6 +1,7 @@
 //--------daniel-----
 const urlAPI = "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes"
 const main = document.querySelector("main")
+let data;
 //-------------------
 
 let tituloquiz;
@@ -54,7 +55,7 @@ function carregarQuizz(elemento){
 function quizzGame(resposta){
     
     console.log(resposta.data);
-    const data = resposta.data;
+    data = resposta.data;
     main.innerHTML += `<div class="banner">
     <img src="${data.image}" alt="" />
     <div class="opacity-escura"></div>
@@ -70,24 +71,27 @@ function quizzGame(resposta){
               ${quizzQuestion.title}
             </div>
           </div>  `
-       renderizaRespostas(data, i);
+       renderizaRespostas(i);
     }
 }
-function renderizaRespostas(data, j){
+function renderizaRespostas(j){
     const quizzResp = document.querySelector(".container:last-child");
     for (let i=0;i<data.questions[j].answers.length;i++){
         let quizzAnswer = data.questions[j].answers[i];
-        quizzResp.innerHTML += `<div class="box" onClick="selecionarOpcao(this)">
+        quizzResp.innerHTML += `<div class="box" onClick="selecionarOpcao(this, ${j}, ${i})">
         <img src=${quizzAnswer.image} alt="" />
         <p>${quizzAnswer.text}</p>
       </div>`
 
     }
 }
-function selecionarOpcao(elemento){
-    const opcoes = elemento.parentNode.querySelectorAll(".box")
-    opcoes.forEach(box => { box.classList.add("opacity-clara")
-    
+function selecionarOpcao(Eonclick,numPergunta,numResposta){
+    const opcoes = Eonclick.parentNode.querySelectorAll(".box")
+    opcoes.forEach(box => { 
+        if(Eonclick !== box){
+            box.classList.add("opacity-clara");
+        }
+        box.removeAttribute("onClick")
     });
 
 }
